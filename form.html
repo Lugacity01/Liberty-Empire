@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="liberty.css">
+    <link rel="stylesheet" href="w3.css">
+    <title>Liberty Registration Form </title>
+    <link rel="shortcut icon" type="image/jpg" href="img/lIBERTY lOGO.png"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+</head>
+</head>
+<body>
+    <div id="formPage">
+        <div class="formPage1">
+        <div class="content">
+            <div class="formPage-img">
+                <img src="img/lIBERTY lOGO.png" alt="">
+            </div>
+            <div class="formPage-content w3-hide-medium">
+                <h1>Liberty Empire Professional Consult</h1>
+                <p>Make life easy for people....</p>
+                <p>Iwaya, Sabo-Yaba, Lagos State, Nigeria</p>
+                <p>Egbe, Ijebu Ode, Ogun State</p>
+            </div>
+            <div class="formPage-content w3-hide-large w3-hide-small"  style="text-align: left;">
+                <h1 style="font-size: 1.6rem; line-height: 4px;">Liberty Empire Professional Association</h1>
+                <p style="font-size: 1rem; line-height: 20px;">Make life easy for people....</p>
+                <p style="font-size: 1rem; line-height: 20px;">Iwaya, Sabo-Yaba, Lagos State, Nigeria</p>
+                <p style="font-size: 1rem;">Egbe, Ijebu Ode, Ogun State</p>
+            </div>
+        </div> <br>
+        <div class="w3-center form-page w3-container" style="background-color: #1E5631; color: #f9ffe6;">
+            <h3>CAC REGISTRATION FORM</h3>
+        </div>
+        <form id="myForm" class="myForm w3-card-4">
+          <p style="font-weight: 600;">Details of First Proprietor/Shareholder</p>
+            <!-- <label for="image">Upload Image:</label> -->
+          <div class="file-upload w3-right">
+            <div class="file-detail"> <input type="file" id="image" accept=".png, .jpg, .jpeg, .gif"></div>
+             <span class="upload-text">Choose File</span>
+           </div><br>
+
+          <label for="fullName">Full Name <span style="color: red;">*</span></label>
+          <input class="w3-input w3-border" type="text" id="fullName" oninput="capitalizeInput(this)" required>
+      
+            <div class="w3-row info-details">
+                <div class="phone-datails w3-col l5">
+                    <label for="phoneno">Phone no:</label>
+                    <input class="w3-input w3-border" type="tel" id="phoneno" required oninput="capitalizeInput(this)">
+                </div>
+                <div class="small-column w3-col l1">&nbsp;</div>
+                <div class="date-details w3-col l6">
+                    <label for="emailaddress">Email Address</label>
+                    <input class="w3-input w3-border" type="email" id="emailaddress" required oninput="capitalizeInput(this)">
+                </div>
+            </div>
+          
+            <div class="w3-row info-details">
+                <div class="gender-details w3-col l5">
+                    <label for="gender">Gender:</label>
+                    <select  class="w3-input w3-border"  id="gender" required>
+                       <option value="">Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="small-column w3-col l1">&nbsp;</div>
+                <div class="dob-datails w3-col l6">
+                    <label for="dob">Date of Birth</label>
+                    <input class="w3-input w3-border" type="date" id="dob">
+                </div>
+            </div>
+
+            <div class="w3-row info-details">
+                <div class="gender-details w3-col l5">
+                    <label for="occupation">Occupation:</label>
+                    <input  class="w3-input w3-border"  type="text" id="occupation" required oninput="capitalizeInput(this)">
+                </div>
+                <div class="small-column w3-col l1">&nbsp;</div>
+                <div class="dob-datails w3-col l6">
+                    <label for="price">Price:</label>
+                    <select  class="w3-input w3-border"  id="price" required onchange="displaySelectedValue(this), changeDetails()">
+                        <option value="">Select</option>
+                        <option value="#20,000">Business Name(No TIN)</option>
+                        <option value="#25,000">Business Name + TIN</option>
+                        <option value="#50,000"> Company (LTD-1Million Shares)</option>
+                        <option value="#120,000">Incorporated Trustee(Association|NGO)</option>
+                    </select>
+                        <div id="selectedValue"></div>
+                </div>
+            </div> 
+            
+            <div class="w3-row info-details" id="info-details">
+                <div class="address-details w3-col l5">
+                    <label for="address">Address of Residence:</label>
+                    <input class="w3-input w3-border" type="text" id="address" placeholder="House/Apartment No, Street, City, State" oninput="capitalizeInput(this)">
+                </div>
+                <div class="small-column w3-col l1">&nbsp;</div>
+                <div class="address-datails w3-col l6">
+                    <label for="addressbiz">Address of Business:</label>
+                    <input class="w3-input w3-border" type="text" id="addressbusiness" placeholder="House/Apartment No/Office/Shop, Street, City, State" oninput="capitalizeInput(this)">
+                </div>
+            </div>
+          
+          <div class="textarea-container">
+            <label id="natureOfBusinessLabel" for="businessNature">Nature of Business:</label>
+            <textarea class="w3-input w3-border" id="businessNature" name="businessNature" required  oninput="countCharacters(), capitalizeInput(this)"></textarea>
+            <div class="characterCount"></div>
+        </div>
+
+        <div class="w3-row info-details">
+            <div class="namebuz1-details w3-col l5">
+                <label id="nameOfBizLabel1" for="namebuz">Name of Biz(Proposed Name1):</label>
+                <input class="w3-input w3-border" type="text" id="namebuz1" required oninput="capitalizeInput(this)">
+            </div>
+            <div class="small-column w3-col l1">&nbsp;</div>
+            <div class="namebuz-datails w3-col l6">
+                <label id="nameOfBizLabel2" for="namebuz2">Name of Biz(Proposed Name2):</label>
+                <input class="w3-input w3-border" type="text" id="namebuz2" required oninput="capitalizeInput(this)">
+            </div>
+        </div>
+
+          <!-- <label for="businessNature">Nature of Business:</label>
+          <textarea id="businessNature" required cols="90" rows="10"></textarea> -->
+          <!-- <input type="text" id="businessNature" required> -->
+      
+          <label for="country">Country:</label>
+          <select class="w3-input w3-border"  id="country" required>
+            <option value="">Select Country</option>
+            <option value="Nigeria">Nigeria</option>
+          </select>
+      
+          <div class="w3-row info-details">
+            <div class="phone-datails w3-col l5">
+                <label for="state">State:</label>
+                <select class="w3-input w3-border"  id="state" required>
+                    <option value="">Select State</option>
+                </select>
+            </div>
+            <div class="small-column w3-col l1">&nbsp;</div>
+            <div class="date-details w3-col l6">
+                <label for="lga">Local Government Area:</label>
+                <select class="w3-input w3-border"  id="lga" required>
+                    <option value="">Select LGA</option>
+                </select>
+            </div>
+        </div>       
+          
+          <div id="imagePreview" style="display: none;">
+            <img id="previewImage" src="" alt="Uploaded Image">
+          </div> <br>
+          
+          <!-- <label for="terms">Terms and Conditions:</label> -->
+            <div class="check-details">
+               <div class="check-details-1"> <input type="checkbox" id="terms" required></div>
+                <div class="check-details-2"><label for="terms">I agree to the terms and conditions</label>
+                <span class="w3-padding-8"><i title="The Terms and Conditions govern the Agent's assistance in online registration with the Corporate Affairs Commission. The Client must provide accurate information and documents.Timelines cannot be guaranteed due to external factors. Fees paid are non-refundable, even if registration fails. The Client is responsible for compliance with laws. Confidentiality of client information is ensured. The Agent is not liable for damages or errors in the registration process." class="fa fa-info-circle" aria-hidden="true"></i></span>
+                
+                <!-- <abbr class="w3-text-blue" title="Lugacity Optimal Solutions"><i class="fa fa-info-circle" aria-hidden="true"></i></abbr> -->
+                </div> <br>
+            </div>
+
+          <button class="w3-btn" style="background-color: #1E5631; color: #f9ffe6;" type="submit" id="submitButton" disabled>Submit</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Preview -->
+      <div id="printPage" style="display: none;">
+        <div class="printPage-details">
+            <div class="content" id="content">
+                <div class="formPage-img">
+                    <img src="img/lIBERTY lOGO.png" alt="">
+                </div>
+                <div class="formPage-content">
+                    <h1>Liberty Empire Professional Consult</h1>
+                    <p>Make life easy for people....</p>
+                    <p>Lagos State</p>
+                </div>
+            </div>
+            <h4 style="font-weight: 600;">Submitted Form Data:</h4>
+            <div class="form-info">
+                <div class="form-info-details">
+                    <div class="form-info">
+                        <p><strong>Full Name:</strong> <span id="printFullName"></span></p>
+                        <p><strong>Phone No:</strong> <span id="printPhoneNo"></span></p>
+                        <p><strong>Email Address:</strong> <span id="printEmailAddress"></span></p>
+                    </div>
+                    <div class="form-img">
+                        <img id="printImage" src="" alt="Uploaded Image">
+                    </div>
+                </div>
+                <div class="form-info-1">
+                    <p><strong>Gender:</strong> <span id="printGender"></span></p>
+                    <p><strong>DOB:</strong> <span id="printDOB"></span></p>
+                    <p><strong>Occupation:</strong> <span id="printOccupation"></span></p>
+                    <p><strong>Price:</strong> <span id="printPrice"></span></p>
+                    <div id="info-detailsPrint">
+                        <p><strong>Address of Residence:</strong> <span id="printAddress"></span></p>
+                        <p><strong>Address of Business:</strong> <span id="printAddresszBiz"></span></p>
+                    </div>
+                    <p><strong >Nature of Business:</strong> <span id="printBusinessNature"></span></p>
+                    <p><strong>Name of Business(Proposed Name 1 & 2):</strong> <span id="printNameBuz1"></span> | <span id="printNameBuz2"></span></p>
+                    <!-- <p><strong>Name of Business(Proposed Name 2):</strong> <span id="printNameBuz2"></span></p>                    -->
+                    <p><strong>Country:</strong> <span id="printCountry"></span></p>
+                    <p><strong>State:</strong> <span id="printState"></span></p>
+                    <p><strong>Local Government Area:</strong> <span id="printLga"></span></p>
+                </div>
+                <p style="text-align: justify; padding: 1.5rem 1.5rem; background-color: #f9ffe6;">The Terms and Conditions govern the Agent's assistance in online registration with the Corporate Affairs Commission. The Client must provide accurate information and documents. Timelines cannot be guaranteed due to external factors. Fees paid are non-refundable, even if registration fails. The Client is responsible for compliance with laws. Confidentiality of client information is ensured. The Agent is not liable for damages or errors in the registration process.
+                </p>
+            </div>
+            <label for="downloadFormat" class="w3-btn" style="background-color: #cee38e; color: #1E5631;">Download Format:</label>
+            <select class="w3-btn w3-margin-bottom w3-margin-top" id="downloadFormat">
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+            <option value="pdf">PDF</option>
+            </select>
+        
+            <div class="btn-details">
+                <button class="w3-btn" id="downloadButton">Download Form</button>
+                <button class="w3-btn" id="backButton">Back</button>
+            </div>  
+            
+        </div>
+      </div>
+      
+
+      <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+      <script src="https://unpkg.com/simple-html2pdf"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+      <script src="liberty.js"></script>
+      <script>
+        function capitalizeInput(input) {
+            var words = input.value.split(" ");
+            for (var i = 0; i < words.length; i++) {
+                var word = words[i];
+                if (word !== "") {
+                    words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+                }
+            }
+
+            input.value = words.join(" ");
+        }
+
+        function displaySelectedValue(selectElement) {
+            var selectedValue = selectElement.value;
+            var selectedValueDiv = document.getElementById("selectedValue");
+            selectedValueDiv.textContent = selectedValue;
+        }
+
+        function changeDetails() {
+            var price = document.getElementById("price").value;
+            var addressInput = document.getElementById("address");
+            var printPage = document.getElementById("printPage");
+  
+
+            // Check if the selected option value is either "#20,000" or "#25,000"
+            if (price === "#20,000" || price === "#25,000") {
+                document.getElementById("info-detailsPrint").style.display = "block";
+                addressInput.required = true; // Set the "required" attribute
+                // addressInput.style.display = "block";
+            } else {
+                document.getElementById("info-detailsPrint").style.display = "none";
+                addressInput.required = false; // Remove the "required" attribute
+                // addressInput.style.display = "none";
+            }
+
+            var nameOfBizLabel1 = document.getElementById("nameOfBizLabel1");
+            var nameOfBizLabel2 = document.getElementById("nameOfBizLabel2");
+            var natureOfBusinessLabel = document.getElementById("natureOfBusinessLabel");
+            if (price === "#50,000") {
+                nameOfBizLabel1.innerHTML = "Name of Organization (Proposed Name1):";
+                nameOfBizLabel2.innerHTML = "Name of Organization (Proposed Name2):";
+                natureOfBusinessLabel.innerHTML = "Aims and Objectives:";
+                document.getElementById("info-details").style.display = "none";
+            }
+             else if (price === "#120,000") {
+                  nameOfBizLabel1.innerHTML = "Name of Association (Proposed Name1):";
+                  nameOfBizLabel2.innerHTML = "Name of Association (Proposed Name2):";
+                  natureOfBusinessLabel.innerHTML = "Association Aims and Objectives:";
+                  document.getElementById("info-details").style.display = "none";
+            }else {
+                nameOfBizLabel1.innerHTML = "Name of Biz (Proposed Name1):";
+                nameOfBizLabel2.innerHTML = "Name of Biz (Proposed Name2):";
+              natureOfBusinessLabel.innerHTML = "Nature of Business:";
+              document.getElementById("info-details").style.display = "block";
+            }
+        }
+    
+    
+    </script>
+</body>
+</html>
